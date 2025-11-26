@@ -133,9 +133,8 @@ new Guru().sayHi(); // Hello
     }
 
     set name(value) {
-      if (value.length < 4) {
-        console.log('Name is too short.');
-        return;
+      if (typeof value !== 'string' || value.length < 4) {
+        throw new Error('Name must be a string with at least 4 character.');
       }
       this._name = value;
     }
@@ -143,5 +142,6 @@ new Guru().sayHi(); // Hello
 
   let user = new User('John');
   console.log(user.name);
-  user = new User('');
+  user = new User('Aani');
+  console.log(user.name);
 }
