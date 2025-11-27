@@ -168,3 +168,21 @@ new Guru().sayHi(); // Hello
   console.log(user.name); // John
   console.log(User.prototype.name); // undefined
 }
+
+//Making bound methods with class fields
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    console.log(this.value);
+  }
+}
+
+let button = new Button('hello');
+console.log(button.value);
+
+setTimeout(button.click, 1000); // undefined
+
+console.log(setTimeout(() => button.click(), 1000));
