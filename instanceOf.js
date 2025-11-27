@@ -42,3 +42,24 @@ console.log(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is 
   // ...not a rabbit any more!
   console.log(rabbit instanceof Rabbit); // false
 }
+
+{
+  //Object.prototype.toString for the type
+  let obj = {};
+
+  console.log(obj); // [object Object]
+  console.log(obj.toString()); // the same
+}
+{
+  // copy toString method into a variable for convenience
+  let objectToString = Object.prototype.toString;
+
+  // what type is this?
+  let arr = [];
+  console.log(objectToString.call(arr)); // [object Array]
+
+  let s = Object.prototype.toString;
+  console.log(s.call(123)); // [object Number]
+  console.log(s.call(null)); // [object Null]
+  console.log(s.call(alert)); // [object Function]
+}
