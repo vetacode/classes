@@ -156,7 +156,8 @@
     name: 'Animal',
     eat() {
       // animal.eat.[[HomeObject]] == animal
-      alert(`${this.name} eats.`);
+      console.log(`${this.name} eats.`);
+      return `${this.name} eats.`;
     },
   };
 
@@ -165,7 +166,7 @@
     name: 'Rabbit',
     eat() {
       // rabbit.eat.[[HomeObject]] == rabbit
-      super.eat();
+      return super.eat();
     },
   };
 
@@ -174,10 +175,36 @@
     name: 'Long Ear',
     eat() {
       // longEar.eat.[[HomeObject]] == longEar
-      super.eat();
+      return super.eat();
     },
   };
 
   // works correctly
-  longEar.eat(); // Long Ear eats.
+  console.log(longEar.eat()); // Long Ear eats.
 }
+
+/**TASK 1
+ * Error creating an instance
+importance: 5
+Here’s the code with Rabbit extending Animal.
+
+Unfortunately, Rabbit objects can’t be created. What’s wrong? Fix it.
+
+class Animal {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+}
+
+class Rabbit extends Animal {
+  constructor(name) {
+    this.name = name;
+    this.created = Date.now();
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
+console.log(rabbit.name);
+ */
