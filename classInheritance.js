@@ -208,3 +208,20 @@ class Rabbit extends Animal {
 let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
 console.log(rabbit.name);
  */
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Rabbit extends Animal {
+  constructor(name) {
+    super(name);
+    this.created = Date.now();
+    // this.created = new Date().toLocaleString('id-ID');
+  }
+}
+
+let rabbit = new Rabbit('White Rabbit');
+console.log(rabbit.name);
+console.log(rabbit.created);
