@@ -43,3 +43,41 @@
   class User extends f('Hello') {}
   new User().sayHi(); //Hello
 }
+
+{
+  //OVERRIRDING a Method with 'SUPER' keyword
+  // super.method(...) to call a parent method.
+  // super(...) to call a parent constructor (inside our constructor only).
+  class Animal {
+    constructor(name) {
+      this.name = name;
+      this.speed = 0;
+    }
+
+    run(speed) {
+      this.speed = speed;
+      console.log(`${this.name} runs with speed ${this.speed} km/h`);
+    }
+
+    stop() {
+      this.speed = 0;
+      console.log(`${this.name} stands still!`);
+    }
+  }
+
+  class Rabbit extends Animal {
+    hide() {
+      console.log(`${this.name} hides!!`);
+    }
+
+    stop() {
+      super.stop();
+      this.hide();
+    }
+  }
+
+  let rabbit = new Rabbit('Black Rabbit');
+  rabbit.stop();
+  rabbit.run(10);
+  rabbit.hide();
+}
