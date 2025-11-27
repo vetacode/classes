@@ -4,13 +4,20 @@
 //syntax
 //NOTE: No comma between class methods: to distinguish with object literals
 /**
- * class MyClass {
-  // class methods
-  constructor() { ... }
-  method1() { ... }
-  method2() { ... }
-  method3() { ... }
-  ...
+ * cclass MyClass {
+  prop = value; // property
+
+  constructor(...) { // constructor
+    // ...
+  }
+
+  method(...) {} // method
+
+  get something(...) {} // getter method
+  set something(...) {} // setter method
+
+  [Symbol.iterator]() {} // method with computed name (symbol here)
+  // ...
 }
  */
 
@@ -170,19 +177,38 @@ new Guru().sayHi(); // Hello
 }
 
 //Making bound methods with class fields
-class Button {
-  constructor(value) {
-    this.value = value;
+{
+  class Button {
+    constructor(value) {
+      this.value = value;
+    }
+
+    click() {
+      console.log(this.value);
+    }
   }
 
-  click() {
-    console.log(this.value);
-  }
+  let button = new Button('hello');
+  console.log(button.value);
+
+  setTimeout(button.click, 1000); // undefined
+
+  // console.log(setTimeout(() => button.click(), 1000));
 }
 
-let button = new Button('hello');
-console.log(button.value);
+{
+  class Button {
+    constructor(value) {
+      this.value = value;
+    }
 
-setTimeout(button.click, 1000); // undefined
+    click = () => {
+      console.log(this.value); //hello
+      return this.value;
+    };
+  }
 
-console.log(setTimeout(() => button.click(), 1000));
+  let button = new Button('hello');
+  console.log(button.click());
+  setTimeout(button.click, 1000); //hello
+}
