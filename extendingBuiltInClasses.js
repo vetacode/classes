@@ -35,3 +35,10 @@ console.log(filteredArr.isEmpty()); // false
   // filteredArr is not PowerArray, but Array
   // console.log(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 }
+
+//No static inheritance in built-ins
+/**
+   * there’s no link between Date and Object. They are independent, only Date.prototype inherits from Object.prototype.
+
+That’s an important difference of inheritance between built-in objects compared to what we get with extends.
+   */
