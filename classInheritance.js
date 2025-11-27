@@ -129,3 +129,27 @@
   rabbit.run(30);
   rabbit.hide();
 }
+
+{
+  //Overriding class fields: a tricky note
+  //NOTES: for CLASS FIELDS the parent constructor always uses its own field value, not the overridden one. (THE DIFFERENCE BETWEEN USING FIELDS AND METHODS)
+  class Animal {
+    name = 'animal';
+
+    constructor() {
+      console.log(this.name); // (*)
+    }
+  }
+
+  class Rabbit extends Animal {
+    name = 'rabbit';
+  }
+
+  new Animal(); // animal
+  new Rabbit(); // animal
+}
+
+{
+  //Super: internals, [[HomeObject]]
+  //ADVANCED NOTES:
+}
