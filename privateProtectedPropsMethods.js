@@ -50,3 +50,47 @@ console.log(coffeeMachine.waterAmount); // 0
   coffeeMachine.power = 25; // Error (no setter)
   console.log(coffeeMachine.power); //100
 }
+
+{
+  //Private “#waterLimit”
+  class CoffeeMachine {
+    #waterLimit = 200;
+
+    #fixWaterAmount(value) {
+      if (value < 0) return 0;
+      if (value > this.#waterLimit) return this.#waterLimit;
+    }
+
+    setWaterAmount(value) {
+      this.#waterLimit = this.#fixWaterAmount(value);
+    }
+  }
+
+  let coffeeMachine = new CoffeeMachine();
+
+  // can't access privates from outside of the class
+  // coffeeMachine.#fixWaterAmount(123); // Error
+  // coffeeMachine.#waterLimit = 1000; // Error
+}
+
+{
+  //Private and Public fields can present at the same time
+  class CoffeeMachine {
+    #waterAmount = 0;
+
+    get waterAmount() {
+      return this.#waterAmount;
+    }
+
+    set waterAmount(value) {
+      if (value < 0) value = 0;
+      this.#waterAmount = value;
+    }
+  }
+
+  let machine = new CoffeeMachine();
+
+  machine.waterAmount = 100;
+  // console.log(machine.#waterAmount); // Error
+  console.log(machine.waterAmount); //100
+}
